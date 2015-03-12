@@ -1,0 +1,43 @@
+{
+  "name": "Sourcelayers",
+  "version": "1.0.0",
+  "description": "##Introduction",
+  "main": "config/application.coffee",
+  "dependencies": {
+    "baobab": "^0.4.0",
+    "is-in-viewport": "^2.2.2",
+    "jquery": "^2.1.3",
+    "jquery.scrollto": "^1.4.14",
+    "json-stable-stringify": "^1.0.0",
+    "material-ui": "callemall/material-ui",
+    "react": "^0.12.2",
+    "react-tap-event-plugin": "^0.1.3",
+    "sugar": "^1.4.1",
+    "xhr": "Raynos/xhr"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^1.0.0",
+    "cjsx-loader": "^1.1.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.8.0",
+    "css-loader": "webpack/css-loader",
+    "es6-loader": "^0.2.0",
+    "file-loader": "^0.8.1",
+    "image-webpack-loader": "^1.0.0",
+    "jsx-loader": "^0.12.2",
+    "less": "^2.1.2",
+    "less-loader": "webpack/less-loader",
+    "raw-loader": "^0.5.1",
+    "react-hot-loader": "gaearon/react-hot-loader",
+    "sass-loader": "jtangelder/sass-loader",
+    "style-loader": "webpack/style-loader",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.4.15",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

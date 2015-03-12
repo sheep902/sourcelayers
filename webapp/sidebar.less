@@ -1,0 +1,23 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  > .toolbar {
+    min-height: 56px;
+  }
+  @import 'sidebar/toolbar';
+
+  > .titlebar {
+    min-height: 130px;
+    border-right: 2px @border-color solid;
+    border-bottom: 2px @border-color solid;
+  }
+  @import 'sidebar/titlebar';
+
+  > .navigation {
+    flex-grow: 1;
+    border-right: 2px @border-color solid;
+  }
+  @import 'sidebar/navigation';
+}
+
