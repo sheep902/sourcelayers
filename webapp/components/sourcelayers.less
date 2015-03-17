@@ -1,5 +1,4 @@
 //less libraries
-
 @import '../../node_modules/material-ui/src/less/scaffolding';
 
 span.button-sample {
@@ -34,33 +33,36 @@ html, body {
   position: relative;
 }
 
-::-webkit-scrollbar-track-piece{
-  background-color:#fff;
-  -webkit-border-radius:0;
-}
-::-webkit-scrollbar{
-  width:8px;
-  height:8px;
-}
-::-webkit-scrollbar-thumb{
-  height:50px;
-  background-color:#999;
-  -webkit-border-radius:4px;
-  outline:2px solid #fff;
-  outline-offset:-2px;
-  border: 2px solid #fff;
-}
-::-webkit-scrollbar-thumb:hover{
-  height:50px;
-  background-color:#9f9f9f;
-  -webkit-border-radius:4px;
+::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+  -webkit-border-radius: 0;
 }
 
-@import 'components/list_item.less';
-@import 'components/initial.less';
-@import 'components/tree_item.less';
-@import 'components/spinner.less';
-@import 'components/command_watcher.less';
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 50px;
+  background-color: #999;
+  -webkit-border-radius: 4px;
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  border: 2px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  height: 50px;
+  background-color: #9f9f9f;
+  -webkit-border-radius: 4px;
+}
+
+@import 'pure/list_item.less';
+@import 'pure/initial.less';
+@import 'pure/tree_item.less';
+@import 'pure/spinner.less';
+@import 'pure/command_watcher.less';
 
 .sourcelayers {
   left: 0;

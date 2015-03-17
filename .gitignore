@@ -24,7 +24,7 @@ build/
 ## Environment normalisation:
 /.bundle/
 /vendor/bundle
-/libraries/bundler/man/
+/app/lib/bundler/man/
 
 # for a library or gem, you might want to ignore these files since the code is
 # intended to run in multiple environments; otherwise, check them in:
@@ -114,4 +114,5 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
+/db/
 

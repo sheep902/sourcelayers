@@ -14,7 +14,7 @@ module.exports = {
     },
     resolve: {
         //extensions: ['', '.js', '.jsx', '.scss', '.less', '.cjsx', '.coffee'],
-        root: path.resolve(__dirname),
+        root: path.resolve(__dirname) + 'webapp',
         modulesDirectories: ['lib', 'node_modules', 'app']
     },
     module: {

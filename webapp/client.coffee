@@ -1,5 +1,14 @@
 # Client-side bootstrapping code
 # Will add server-side rendering with Nashorn later
+require 'sugar'
+Object.extend()
+
+window.jQuery = window.$ = require 'jquery'
+
+require 'is-in-viewport'
+require 'jquery.scrollto'
+
+require './components/sourcelayers.less'
 
 React = require 'react'
 window.React = React
@@ -11,27 +20,12 @@ injectTapEventPlugin();
 # invariant.js
 window.__DEV__ = false
 
-Sourcelayers = require 'views/sourcelayers.cjsx'
-
-router = require 'lib/router.coffee'
-
-router.resources [
-  'projects',
-  'users',
-  'info'
-]
-
-router.conflict [
-  ['projects', 'users', 'info']
-]
+Sourcelayers = require './components/sourcelayers.cjsx'
 
 element = React.createElement Sourcelayers, route: router
-ref = React.render(element, document.body)
 
-router.root_component ref
-
-Dispatcher = require('flux/lib/Dispatcher')
-dispatcher = new Dispatcher()
+root = $('#sourcelayers-app')
+ref = React.render(element, root)
 
 window.app = module.exports =
   ref: ref
