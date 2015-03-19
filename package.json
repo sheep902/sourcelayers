@@ -10,8 +10,10 @@
     "jquery.scrollto": "^1.4.14",
     "json-stable-stringify": "^1.0.0",
     "material-ui": "callemall/material-ui",
+    "node-uuid": "^1.4.3",
     "pubsub-js": "^1.5.2",
     "react": "^0.12.2",
+    "react-animate": "^1.2.0",
     "react-tap-event-plugin": "^0.1.4",
     "sugar": "^1.4.1"
   },
@@ -28,6 +30,7 @@
     "less": "^2.1.2",
     "less-loader": "webpack/less-loader",
     "raw-loader": "^0.5.1",
+    "react-hot-loader": "^1.2.3",
     "sass-loader": "jtangelder/sass-loader",
     "style-loader": "webpack/style-loader",
     "url-loader": "^0.5.5",

@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: [
         "webpack/hot/dev-server?http://localhost:8080",
-        './config/application.coffee'
+        './webapp/client.coffee'
     ],
     devtool: 'eval-source-map',
     output: {
@@ -13,14 +13,14 @@ module.exports = {
         publicPath: "http://localhost:8080/assets/"
     },
     resolve: {
-        //extensions: ['', '.js', '.jsx', '.scss', '.less', '.cjsx', '.coffee'],
+        extensions: ['', '.js', '.jsx', '.scss', '.less', '.cjsx', '.coffee'],
         root: path.resolve(__dirname) + 'webapp',
-        modulesDirectories: ['lib', 'node_modules', 'app']
+        modulesDirectories: ['node_modules', 'webapp']
     },
     module: {
         loaders: [
             {test: /\.(cjsx|coffee)$/, loader: 'react-hot!coffee!cjsx'},
-            {test: /\.(jsx|js)$/, loader: 'react-hot!jsx?harmony'},
+            {test: /\.(jsx|js)$/, loader: 'react-hot!jsx?harmony', exclude: /node_modules/},
             {test: /\.json$/, loader: 'json'},
             {
                 test: /\.less$/,

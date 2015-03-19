@@ -4,8 +4,9 @@ class Server
   include Celluloid
 
   def initialize
-    Endpoints.run!
+    Endpoints.run
   end
 end
 
 Server.supervise_as(:server)
+sleep

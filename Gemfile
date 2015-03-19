@@ -16,6 +16,7 @@ gem 'rjgit'
 
 group :development do
   gem 'pry', require: false
+  gem 'rake', require: false
 end
 
 group :test do

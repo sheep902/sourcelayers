@@ -17,7 +17,7 @@ class Endpoints < Angelo::Base
     s.on_close{ sses(false).remove_socket s }
   end
 
-  get '*' do # catch-all
+  get '/*' do # catch-all
     'hello world'
   end
 
