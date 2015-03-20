@@ -17,7 +17,7 @@ injectTapEventPlugin();
 # invariant.js
 window.__DEV__ = false
 
-Root = require './components/root'
+Root = require 'components/root'
 
 root = React.createElement Root
 
@@ -25,3 +25,4 @@ $(document).ready ->
   root_div = $('#sourcelayers-app').get(0)
   React.render(root, root_div)
 
+require 'stylesheets/root.less'

@@ -1,3 +1,0 @@
-  class Guard < Service
-
-  end

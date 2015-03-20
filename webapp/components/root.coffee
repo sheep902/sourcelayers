@@ -1,10 +1,10 @@
-Component = require 'component'
-
 React = require 'react'
 p = React.createFactory 'p'
 
+store = require 'truth/store'
+
 module.exports = React.createClass
-  mixins: [Component]
+  mixins: [store.mixin]
 
   render: ->
     p null, [

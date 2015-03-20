@@ -8,9 +8,6 @@ gem 'activesupport'
 
 gem 'lock_jar'
 
-gem 'pacer'
-gem 'pacer-orient'
-
 # VCS
 gem 'rjgit'
 
