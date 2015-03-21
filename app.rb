@@ -16,3 +16,6 @@ module App
 end
 
 require 'java'
+
+# monkey patches
+require 'app/database/kernel'

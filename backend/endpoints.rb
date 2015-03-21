@@ -1,22 +1,17 @@
 class Endpoints < Angelo::Base
-  get '/api/search/' do
+  get '/api/query/' do
     content_type :json
-    RequestHandler.new.search params
-  end
-
-  get '/api/reverse/:id' do
-    content_type :json
-    RequestHandler.new.reverse id
+    Query.search params
   end
 
   get '/api/:ids' do
     content_type :json
-    RequestHandler.new.fetch params
+    Query.fetch params
   end
 
   put '/api/:id' do # commands should be idempotent
     content_type :json
-    RequestHandler.new.async.command params
+    Command::Dispatcher.dispatch params
 
     halt 202, id: params[:id], status: 'submitted'
   end

@@ -1,4 +1,4 @@
-class CreateUser
+class CreateUser < Command
   def call
   end
 

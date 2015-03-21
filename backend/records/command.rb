@@ -1,0 +1,2 @@
+class Command < Record
+end

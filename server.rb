@@ -9,4 +9,5 @@ class Server
 end
 
 Server.supervise_as(:server)
+DBWatcher.supervise_as(:db_watcher)
 sleep
