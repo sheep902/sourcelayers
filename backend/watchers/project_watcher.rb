@@ -1,0 +1,3 @@
+class ProjectWatcher < Watcher
+
+end

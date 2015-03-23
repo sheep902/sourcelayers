@@ -4,14 +4,14 @@ import com.orientechnologies.orient.core.db.ODatabaseLifecycleListener
 class UpdateTrigger < ORecordHookAbstract
   include ODatabaseLifecycleListener
 
-  import com.orientechnologies.orient.core.hook.ORecordHook.HOOK_POSITION
+  import com.orientechnologies.orient.core.hook.ORecordHook
 
   def onOpen(db)
-    db.register_hook(self, HOOK_POSITION::LAST)
+    db.register_hook(self, ORecordHook::HOOK_POSITION::LAST)
   end
 
   def onCreate(db)
-    db.register_hook(self, HOOK_POSITION::LAST)
+    db.register_hook(self, ORecordHook::HOOK_POSITION::LAST)
   end
 
   def onClose(db)
@@ -19,20 +19,16 @@ class UpdateTrigger < ORecordHookAbstract
   end
 
   def getPriority
-    import com.orientechnologies.orient.core.db.ODatabaseLifecycleListener.PRIORITY
-    PRIORITY::LAST
+    com.orientechnologies.orient.core.db.ODatabaseLifecycleListener::PRIORITY::LAST
   end
 
   def onRecordAfterUpdate(r)
-    watcher = Celluloid::Actor[:db_watcher]
-    if watcher and watcher.alive?
-      watcher.async.tell r.getIdentity
-    end
+    Celluloid::Actor[:server].async.update_record r.get_identity.to_s
   end
 
   def getDistributedExecutionMode
-    import com.orientechnologies.orient.core.hook.ORecordHook.DISTRIBUTED_EXECUTION_MODE
-    DISTRIBUTED_EXECUTION_MODE::BOTH
+    import com.orientechnologies.orient.core.hook.ORecordHook
+    ORecordHook::DISTRIBUTED_EXECUTION_MODE::BOTH
   end
 
   def onCreateClass(i_database, i_class)

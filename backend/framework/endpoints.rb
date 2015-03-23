@@ -1,19 +1,13 @@
 class Endpoints < Angelo::Base
-  get '/api/query/' do
-    content_type :json
-    Query.search params
-  end
-
   get '/api/:ids' do
     content_type :json
-    Query.fetch params
+    Query.new(params).run
   end
 
-  put '/api/:id' do # commands should be idempotent
+  put '/api/:id' do
     content_type :json
-    Command::Dispatcher.dispatch params
-
-    halt 202, id: params[:id], status: 'submitted'
+    Command.new(params).async.run
+    {id: params[:id], status: 'submitted'}
   end
 
   eventsource '/api/watch/:ids' do |s|
@@ -21,8 +15,11 @@ class Endpoints < Angelo::Base
     ids.map { |id| sses[id] << s }
     s.on_close { sses(false).remove_socket s }
   end
-  task :update do |record|
-    sses[id].message record
+
+  task :update_record do |id|
+    query = FindById.new(id)
+    sses[id].message query.result
+    query.terminate
   end
 
   get '/*' do # catch-all

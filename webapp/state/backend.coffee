@@ -2,7 +2,6 @@ Q = require 'q-xhr'
 
 
 watch = (ids)-> # array of objects
-  Q.xhr
 
 query = (ids)-> # array of objects
 

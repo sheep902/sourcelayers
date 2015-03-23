@@ -1,3 +1,0 @@
-class OrientSQL < Query
-
-end

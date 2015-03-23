@@ -5,8 +5,6 @@ window.jQuery = window.$ = require 'jquery'
 require 'is-in-viewport'
 require 'jquery.scrollto'
 
-#require './components/sourcelayers.less'
-
 React = require 'react'
 window.React = React
 
@@ -21,8 +19,11 @@ Root = require 'components/root'
 
 root = React.createElement Root
 
+# register action handlers
+require 'actions/search_projects'
+
 $(document).ready ->
-  root_div = $('#sourcelayers-app').get(0)
+  root_div = $('#sourcelayers-root').get(0)
   React.render(root, root_div)
 
-require 'stylesheets/root.less'
+require 'styles/root.less'
