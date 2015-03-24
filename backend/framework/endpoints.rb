@@ -1,7 +1,12 @@
 class Endpoints < Angelo::Base
-  get '/api/:ids' do
+  get '/api/*ids' do
     content_type :json
-    Query.new(params).run
+
+    query = Query.new(params)
+    results = query.run
+    query.terminate
+
+    results
   end
 
   put '/api/:id' do

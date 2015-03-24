@@ -15,6 +15,9 @@ injectTapEventPlugin();
 # invariant.js
 window.__DEV__ = false
 
+# register events
+require 'events/signing_up'
+
 Root = require 'components/root'
 
 root = React.createElement Root

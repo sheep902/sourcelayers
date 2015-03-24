@@ -1,19 +1,20 @@
-# TODO move orient-related codes to concern
-class Command
+class DataPorter
   include Celluloid
   finalizer :cleanup
 
   attr_reader :store
 
-  def initialize(params)
-    @param = params
+  def initialize(vertex)
+    @vertex = vertex
     @store = $store.get_tx
   end
 
-  def schedule
+  def act
+    raise 'not implemented'
   end
 
   def cleanup
     store.shutdown if $store
   end
+
 end

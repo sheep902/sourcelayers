@@ -1,4 +1,4 @@
 {handler, store} = require 'framework/event'
 
-handler (params)->
+handler 'signing_up', ->
   # update button status
