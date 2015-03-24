@@ -13,13 +13,13 @@ require 'celluloid/autostart'
 ActiveSupport::Dependencies.autoload_paths += Dir.glob 'backend/*/'
 
 # environment variables
-require 'backend/database/startup'
+require 'backend/store/startup'
 
 # monkey patches
-require 'backend/database/orient_vertex'
+require 'backend/store/orient_vertex'
 
 # services
 
 # server
 Celluloid::Actor[:server] = Endpoints.run
-at_exit do Celluloid::Actor[:server] = Endpoints.run.terminate end
+at_exit do Celluloid::Actor[:server].terminate end

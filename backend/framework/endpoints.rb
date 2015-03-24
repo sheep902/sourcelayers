@@ -12,13 +12,13 @@ class Endpoints < Angelo::Base
 
   eventsource '/api/watch/:ids' do |s|
     ids = params[:ids].split(',')
-    ids.map { |id| sses[id] << s }
-    s.on_close { sses(false).remove_socket s }
+    ids.map{|id| sses[id] << s}
+    s.on_close{sses(false).remove_socket s}
   end
 
   task :update_record do |id|
     query = FindById.new(id)
-    sses[id].message query.result
+    sses[id].message query.result.as_json
     query.terminate
   end
 

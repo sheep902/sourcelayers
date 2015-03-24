@@ -2,7 +2,7 @@ React = require 'react'
 
 sidebar = React.createFactory require('components/root/sidebar')
 
-store = require 'truth/store'
+store = require 'framework/store'
 
 module.exports = React.createClass
   mixins: [store.mixin]

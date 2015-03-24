@@ -8,4 +8,3 @@ module.exports = React.createClass
     div {className: classnames('sidebar', @props.className)}, [
       'hello world'
     ]
-

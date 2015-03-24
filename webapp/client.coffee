@@ -19,9 +19,6 @@ Root = require 'components/root'
 
 root = React.createElement Root
 
-# register action handlers
-require 'actions/search_projects'
-
 $(document).ready ->
   root_div = $('#sourcelayers-root').get(0)
   React.render(root, root_div)

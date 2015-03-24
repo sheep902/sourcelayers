@@ -23,7 +23,11 @@ class UpdateTrigger < ORecordHookAbstract
   end
 
   def onRecordAfterUpdate(r)
-    Celluloid::Actor[:server].async.update_record r.get_identity.to_s
+    server = Celluloid::Actor[:server]
+
+    if server and server.alive?
+      Celluloid::Actor[:server].async.update_record r.get_identity.to_s
+    end
   end
 
   def getDistributedExecutionMode
