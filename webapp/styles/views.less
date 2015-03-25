@@ -1,0 +1,69 @@
+@import 'reset.less';
+
+#sourcelayers-root {
+  > .root {
+    @import "../../node_modules/material-ui/src/less/scaffolding.less";
+
+    span.button-sample {
+      color: @accent-1-color;
+    }
+
+    span.accent {
+      color: @accent-1-color;
+    }
+
+    span.primary {
+      color: @primary-1-color;
+    }
+
+    //App Colors
+    @primary-1-color: @teal-500;
+    @primary-2-color: @teal-700;
+    @primary-3-color: @teal-100;
+    @accent-1-color: @pink-A200;
+    @accent-2-color: @pink-A400;
+    @accent-3-color: @pink-A100;
+
+    @import "../../node_modules/material-ui/src/less/components.less";
+
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow-y: scroll;
+
+    > .navigation {
+      flex-grow: 1;
+      background: @primary-1-color;
+      color: white;
+    }
+
+    > .main {
+      width: 8.3in;
+
+      border-left: solid #efefef 2px;
+      border-right: solid #efefef 2px;
+    }
+
+    > .histories {
+      width: 200px;
+    }
+
+    > .main-button {
+      position: absolute;
+      top: 100px;
+      right: 175px;
+
+      width: 56px;
+      height: 56px;
+
+      z-index: 2;
+    }
+
+  }
+}

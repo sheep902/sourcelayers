@@ -19,6 +19,7 @@ module.exports = {
     },
     module: {
         loaders: [
+            {test: /commands\//, loader: 'webworker'},
             {test: /\.(cjsx|coffee)$/, loader: 'react-hot!coffee!cjsx'},
             {test: /\.(jsx|js)$/, loader: 'react-hot!jsx?harmony', exclude: /node_modules/},
             {test: /\.json$/, loader: 'json'},

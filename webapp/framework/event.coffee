@@ -1,10 +1,10 @@
 channel = require 'pubsub-js'
-store   = require 'store'
+store   = require 'framework/store'
 
-handler = (evt, func) ->
-  channel.register "store_event.#{evt}", (params)->
+handler = (evt_name, func) ->
+  channel.subscribe "event.#{evt_name}", (ignored, params)->
     try
-      func.apply this, params
+      func.apply store, params
     finally
       store.commit()
 

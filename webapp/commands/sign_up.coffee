@@ -1,3 +1,5 @@
-{handler, send_event} = require 'framework/action'
+{handler, emit} = require 'framework/command'
 
-handler this, (username, password)->
+handler (username, password)->
+  emit 'signing_up', username, password
+
