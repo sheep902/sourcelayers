@@ -6,6 +6,6 @@ Sourcelayers is a code reading tool.
 
 ##Contribute
 
-Sourcelayers is licensed under GPLv2.
+Sourcelayers is licensed under MPL or GPLv2.
 
-The author keeps his rights to relicense contributions to this repo.
+The author keeps his rights to relicense this repo and its contributions.

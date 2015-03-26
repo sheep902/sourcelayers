@@ -1,4 +1,3 @@
-# TODO move orient-related codes to concern
 class Command
   include Celluloid
   finalizer :cleanup
@@ -10,7 +9,9 @@ class Command
     @store = $store.get_tx
   end
 
-  def schedule
+  def run
+    @store.add_vertex # TODO
+
   end
 
   def cleanup

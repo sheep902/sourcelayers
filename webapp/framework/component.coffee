@@ -30,7 +30,7 @@ react_mixin =
       query_name = query_params.shift()
 
       partial_cursors = {}
-      partial_cursors[local_name] = require("queries/#{query_name}") query_params
+      partial_cursors[local_name] = require("queries/#{query_name}")(query_params)
       partial_cursors
     .reduce (q1, q2)-> q1.merge q2
 
