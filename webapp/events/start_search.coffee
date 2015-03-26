@@ -1,4 +1,4 @@
-{handler} = require 'framework/event'
+{handler, store} = require 'framework/event'
 
 handler 'start_search', ->
-  console.log 'start_search'
+  store.select('records', 'projects').set 'proj1', {name: 'bob'}

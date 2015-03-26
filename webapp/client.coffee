@@ -17,7 +17,7 @@ injectTapEventPlugin();
 require 'events/signing_up'
 require 'events/start_search'
 
-Root = require 'views/root'
+Root = require 'components/root'
 
 root = React.createElement Root
 

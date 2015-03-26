@@ -1,12 +1,15 @@
-View = require 'framework/view'
+Component = require 'framework/component'
 
 SvgIcon = require('material-ui').SvgIcon
 MainButton = require('material-ui').FloatingActionButton
 
-module.exports = View
-  queries: ['all_projects']
+module.exports = Component
+  queries:
+    projects: 'all_projects'
 
   render: ->
+    console.log @state
+
     <div className='root'>
       <div className='navigation'>
         <div className='title'>
@@ -25,7 +28,7 @@ module.exports = View
         </div>
       </div>
       <div className='main'>
-        docs
+        {JSON.stringify @state}
       </div>
       <MainButton onClick={=> @event 'start_search'} className='main-button'>
         <SvgIcon style={top: '2px'}>

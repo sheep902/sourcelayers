@@ -32,13 +32,21 @@ module.exports = {
             {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,loader: "file"}
         ],
         postLoaders: [
-            {test: /views\//, loader: 'react-hot', except: /node_modules/}
+            {test: /components\//, loader: 'react-hot', except: /node_modules/}
         ]
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"development"'
-        })
+        }),
+        new webpack.ContextReplacementPlugin(
+            /commands\//,
+            path.join(__dirname, "webapp")
+        ),
+        new webpack.ContextReplacementPlugin(
+            /queries\//,
+            path.join(__dirname, "webapp")
+        )
     ]
 };

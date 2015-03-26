@@ -8,11 +8,11 @@ react_mixin =
   mixins: [store.mixin]
 
   start: (cmd_name, params...)->
-    worker = require.context('..')("./commands/#{cmd_name}")
+    worker = require "commands/#{cmd_name}"
     handler = new worker
     handler.onmessage = (e) ->
-      evt_name = e.data[0]
-      evt_params = e.data[1..-1]
+      evt_params = e.data.clone()
+      evt_name = evt_params.shift()
       channel.publish "event.#{evt_name}", evt_params
 
     handler.postMessage(params)
@@ -21,15 +21,18 @@ react_mixin =
   event: (params...)->
     @start 'emit', params...
 
-  __queries: []
-
   # pass queries to baobab mixin
-  cursors: -> # todo ugly
-    (@__queries.add @queries).map (query)->
-      query_params= if query.isArray() then query else [query]
+  cursors: ->
+    ({}.merge @queries).map (local_name, query_params)=>
+      query_params = query_params.clone()
+
+      query_params = if query_params.isArray() then query_params else [query_params]
       query_name = query_params.shift()
 
-      require.context('..')("./queries/#{query_name}").apply(this, query_params)
+      partial_cursors = {}
+      partial_cursors[local_name] = require("queries/#{query_name}") query_params
+      partial_cursors
+    .reduce (q1, q2)-> q1.merge q2
 
 module.exports = (obj)->
   obj.mixins = [react_mixin].add obj.mixins
