@@ -19,7 +19,6 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /commands\//, loader: 'webworker'},
             {test: /\.cjsx$/, loader: 'coffee!cjsx'},
             {test: /\.coffee$/, loader: 'coffee'},
             {test: /\.js$/, loader: 'babel', exclude: /node_modules/},
@@ -32,6 +31,7 @@ module.exports = {
             {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,loader: "file"}
         ],
         postLoaders: [
+            {test: /commands\//, loader: 'webworker'},
             {test: /components\//, loader: 'react-hot', except: /node_modules/}
         ]
     },

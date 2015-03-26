@@ -1,5 +1,5 @@
 class FindById < Query
-  def result
-    @store.get_vertex @param
+  def query
+    store.get_vertex @param
   end
 end

@@ -11,8 +11,10 @@ class ProjectTransporter
   end
 
   def fetch(name)
-
-  rescue
+    
+  rescue => e
+    @vertex[:status] = 'error'
+  ensure
     terminate
   end
 
