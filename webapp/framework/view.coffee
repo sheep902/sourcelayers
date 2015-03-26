@@ -3,8 +3,6 @@ React = require 'react'
 channel = require 'pubsub-js'
 store = require 'framework/store'
 
-emit = require 'commands/emit'
-
 # A React component mixin
 react_mixin =
   mixins: [store.mixin]
@@ -14,16 +12,24 @@ react_mixin =
     handler = new worker
     handler.onmessage = (e) ->
       evt_name = e.data[0]
-      params = e.data[1..-1]
-      channel.publish "event.#{evt_name}", params
+      evt_params = e.data[1..-1]
+      channel.publish "event.#{evt_name}", evt_params
 
     handler.postMessage(params)
 
-  emit: (params...)-> # shortcut
-    start emit, params
+  # shortcut for simple actions
+  event: (params...)->
+    @start 'emit', params...
 
-  read: (query, params...)->
-    query params
+  __queries: []
+
+  # pass queries to baobab mixin
+  cursors: -> # todo ugly
+    (@__queries.add @queries).map (query)->
+      query_params= if query.isArray() then query else [query]
+      query_name = query_params.shift()
+
+      require.context('..')("./queries/#{query_name}").apply(this, query_params)
 
 module.exports = (obj)->
   obj.mixins = [react_mixin].add obj.mixins

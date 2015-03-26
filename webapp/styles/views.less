@@ -35,23 +35,49 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    overflow-y: scroll;
 
     > .navigation {
       flex-grow: 1;
-      background: @primary-1-color;
-      color: white;
+
+      display: flex;
+      flex-direction: column;
+
+      > .title {
+        background: @primary-1-color;
+        color: white;
+        height: 200px;
+      }
+
+      > .tree {
+        flex-grow: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        > .tree-item {
+          height: 64px;
+
+        }
+
+        border-right: solid #efefef 1px;
+      }
     }
 
     > .main {
       width: 8.3in;
 
-      border-left: solid #efefef 2px;
+      border-left: solid #efefef 1px;
       border-right: solid #efefef 2px;
     }
 
     > .histories {
       width: 200px;
+      overflow-y: auto;
+
+      > .history {
+        height: 100px;
+        width: 100%;
+        border-bottom: solid #efefef 1px;
+      }
     }
 
     > .main-button {

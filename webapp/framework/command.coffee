@@ -7,8 +7,6 @@ handler = (func)->
   this.onmessage = (e)->
     try
       func.apply this, e.data
-    catch e
-      console.log e
     finally
       close()
 

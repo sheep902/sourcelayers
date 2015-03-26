@@ -1,4 +1,4 @@
-{handler} = require 'framework/command'
+{handler, emit} = require 'framework/command'
 
-handler (evt_name, params)->
+handler (params...)->
   emit params

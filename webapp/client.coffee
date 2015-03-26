@@ -1,13 +1,10 @@
 # Client-side bootstrapping code
 # Will add server-side rendering with Nashorn later
-window.jQuery = window.$ = require 'jquery'
-
-require 'is-in-viewport'
-require 'jquery.scrollto'
-
 # sugar.js
 require 'sugar'
 Object.extend()
+
+NODE_ENV = 'development'
 
 React = require 'react'
 window.React = React
@@ -15,9 +12,6 @@ window.React = React
 # required by material-ui
 injectTapEventPlugin = require "react-tap-event-plugin"
 injectTapEventPlugin();
-
-# invariant.js
-window.__DEV__ = false
 
 # register events
 require 'events/signing_up'
@@ -27,8 +21,8 @@ Root = require 'views/root'
 
 root = React.createElement Root
 
-$(document).ready ->
-  root_div = $('#sourcelayers-root').get(0)
+document.addEventListener "DOMContentLoaded", ->
+  root_div = document.getElementById('sourcelayers-root')
   React.render(root, root_div)
 
 require 'styles/views.less'
