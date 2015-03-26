@@ -1,5 +1,5 @@
 # actions handlers are actors running in dedicated web workers
-# send_event is their only way to return result
+# emit is their only way to return result
 
 emit = (params...) -> this.postMessage params
 

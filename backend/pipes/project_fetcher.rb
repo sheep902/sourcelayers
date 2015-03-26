@@ -10,14 +10,10 @@ class ProjectTransporter
     @store = $store.get_tx
   end
 
-  def fetch(name, &block)
-    define_method name do
-      begin
-        yield block
-      rescue
-        terminate
-      end
-    end
+  def fetch(name)
+
+  rescue
+    terminate
   end
 
   def cleanup
