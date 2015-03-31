@@ -13,9 +13,12 @@ window.React = React
 injectTapEventPlugin = require "react-tap-event-plugin"
 injectTapEventPlugin();
 
-# register events
-require 'events/signing_up'
-require 'events/start_search'
+# pubsub.js
+PubSub = require 'pubsub-js'
+PubSub.immediateExceptions = true;
+
+# register transition handlers
+['start_search'].map (name)-> require "transitions/#{name}"
 
 Root = require 'components/root'
 

@@ -37,24 +37,28 @@ webpack-dev-server --save
          Backend                                                               Frontend
 
   +--------------------+           +--------------+            +----------------+
-  |                    |           |           ...+--Query(n)-->                <--Terminate---------+
-  |   Command Worker   <--Spawn----+.......    .  |            |  Intent Worker |                    |
-  |                    |           |       \...|..<-Command(1)-+                <---Spawn------+     |
-  +----^---------------+           |           .  |            +----+------^----+              |     |
-       |                           |           .  |                 |      |                   |     |
-     Direct                        |   Endpoint.  |              Command Terminate             |     |
-     Access         +---------+    |           .  |                 |      |               +---+---+ |
-       |            | Update  +---->.......    .  |            +----v------+----+        +-|Context|-+-+
-  +----v------------| Trigger |    |       \...|..+----Push---->                |        | +-------+   |
-  |                 +---------+    |           .  |            |     State      +-Query->|  Component  |
-  |   OrientDB Store   |           |           ...+----Query--->                |        |             |
-  |                    +--Query---->........../   |            +----------------+        +-------------+
+  |                    |           |           ...+----Query--->                <---Cancel-----+
+  |   Command Worker   <--Spawn----+.......    .  |            |  Intent Worker |              |
+  |                    |           |       \...|..<--Command---+                <---Spawn--+   |
+  +----^---------------+           |           .  |            +-------+--------+          |   |
+       |                           |           .  |                    |                   |   |
+     Direct                        |   Endpoint.  |                Transition              |   |
+     Access         +---------+    |           .  |                    |                 +-+---+---+
+       |            | Update  +---->.......    .  |            +-------v--------+        | Intent  |--------------+
+  +----v------------| Trigger |    |       \...|..+----Push---->                +--Query-> Context |              |
+  |                 +---------+    |           .  |            |     State      |        +---------+ Component    |
+  |   OrientDB Store   |           |           ...+----Query--->                +----Query---->|                  |
+  |                    +--Query---->........../   |            +----------------+              +------------------+
   +--------------------+           +--------------+
 
 ```
 
-Intent Worker: The equivalent of Flux's Action Handler. User's UI activities are meaningless to our App (e.g. typing chars in form) until we can finally infer what the user's real intention is (e.g. click sign up button). Then an intent worker is generated to finish this intent. An intent worker translate the intent into one server command & several store commands. Intent worker can be terminated by user.
+Intent Worker: The equivalent of Flux's Action Handler. User's UI activities are meaningless to our App (e.g. typing chars in form) until we can finally infer what the user's real intention is (e.g. click sign up button -> create a user). An intent worker translate this intent into server command/state transitions.
 
-Context: Collects information from view state + baobab store and feeds it into the intent worker being generated. Note intent workers are meant to model users' decisions under a certain state of the app, and a context is a snapshot of the "certain state", so contexts should be static (I don't know how to make them dynamic anyway).  Server Command: A server command describes the corresponding user intent in a view-agnostic way.
+Context: Information from app state and view state. Note an intent worker is meant to model user's decision under a certain state of the app, and context is a snapshot of the "certain state", so contexts should be static (I don't know how to make them dynamic anyway).
 
-State Command: An intent worker can send several state commands to put app in the proper state. When a collision is detected in the state command handler, the handler may decide to solve it or terminate the intent worker.
+Command: How the background sees the user intent. Optional.
+
+Transition: An intent worker triggers transitions to change app state. When a collision is detected in the transition handler, the handler may decide to solve it or terminate the intent worker.
+
+TODO intent collision set

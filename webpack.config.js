@@ -31,7 +31,7 @@ module.exports = {
             {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,loader: "file"}
         ],
         postLoaders: [
-            {test: /commands\//, loader: 'webworker'},
+            {test: /intents\//, loader: 'webworker'},
             {test: /components\//, loader: 'react-hot', except: /node_modules/}
         ]
     },
@@ -41,11 +41,11 @@ module.exports = {
             'process.env.NODE_ENV': '"development"'
         }),
         new webpack.ContextReplacementPlugin(
-            /commands\//,
+            /transitions\//,
             path.join(__dirname, "webapp")
         ),
         new webpack.ContextReplacementPlugin(
-            /queries\//,
+            /intents\//,
             path.join(__dirname, "webapp")
         )
     ]
