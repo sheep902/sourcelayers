@@ -31,6 +31,7 @@ webpack-dev-server --save
    App state by component.
      e.g. form content, button down/up.
  - TODO Background jobs may fail at any moment. Scalable fail-over?
+ - TODO Some changes are local (e.g. git clone) and will not be automatically synchronized across machines.
 
 ```
 
@@ -57,7 +58,7 @@ Intent Worker: The equivalent of Flux's Action Handler. User's UI activities are
 
 Context: Information from app state and view state. Note an intent worker is meant to model user's decision under a certain state of the app, and context is a snapshot of the "certain state", so contexts should be static (I don't know how to make them dynamic anyway).
 
-Command: How the backend understands the user intent. Optional.
+Command: How the backend understands the intent. Optional.
 
 Transition: An intent worker triggers transitions to change app state. When a collision is detected in the transition handler, the handler may decide to solve it or terminate the intent worker.
 

@@ -13,4 +13,6 @@ state = new Baobab
   mixins: [ReactAddons.PureRenderMixin]
   shiftReferences: true
 
+window.state = state if window?
+
 module.exports = state

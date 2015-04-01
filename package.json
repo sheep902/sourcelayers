@@ -4,17 +4,17 @@
   "description": "##Introduction",
   "main": "config/application.coffee",
   "dependencies": {
-    "baobab": "pinyin/baobab",
+    "baobab": "^0.4.3",
     "highlight.js": "^8.4.0",
-    "material-ui": "^0.7.1",
+    "material-ui": "^0.7.2",
     "pubsub-js": "^1.5.2",
-    "react": "^0.12.x",
-    "react-tap-event-plugin": "^0.1.4",
+    "react": "^0.13.x",
+    "react-tap-event-plugin": "^0.1.6",
     "sugar": "^1.4.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",
-    "babel-loader": "^4.2.0",
+    "babel-loader": "^4.3.0",
     "cjsx-loader": "^2.0.1",
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.9.1",
@@ -26,11 +26,11 @@
     "less-loader": "^2.2.0",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.2.4",
-    "sass-loader": "^1.0.0",
+    "sass-loader": "^1.0.1",
     "style-loader": "^0.9.0",
     "url-loader": "^0.5.5",
     "webpack": "^1.7.3",
-    "webpack-dev-server": "^1.7.0",
+    "webpack-dev-server": "^1.8.0",
     "webworker-loader": "^0.1.0"
   },
   "scripts": {
