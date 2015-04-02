@@ -16,6 +16,12 @@ The author keeps his rights to relicense this repo and its contributions.
 npm install
 npm install webpack-dev-server -g
 webpack-dev-server --hot
+
+bundle install
+bundle console
+google-chrome -disable-web-security
+(open http://localhost:8080)
+
 ```
 
 ## Design Decisions

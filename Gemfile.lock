@@ -7,6 +7,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     angelo (0.2.3)
       mime-types
       reel
@@ -19,10 +20,11 @@ GEM
     diff-lcs (1.2.5)
     ffi (1.9.8-java)
     hitimes (1.2.2-java)
-    http (0.7.2)
-      http-form_data (~> 1.0.0)
+    http (0.8.0)
+      addressable (~> 2.3)
+      http-form_data (~> 1.0.1)
       http_parser.rb (~> 0.6.0)
-    http-form_data (1.0.0)
+    http-form_data (1.0.1)
     http_parser.rb (0.6.0-java)
     httpclient (2.6.0.1)
     i18n (0.7.0)
@@ -42,13 +44,14 @@ GEM
       slop (~> 3.4)
       spoon (~> 0.0)
     rake (10.4.2)
+    rb-readline (0.5.2)
     reel (0.5.0)
       celluloid (>= 0.15.1)
       celluloid-io (>= 0.15.0)
       http (>= 0.6.0.pre)
       http_parser.rb (>= 0.6.0)
       websocket_parser (>= 0.1.6)
-    rjgit (0.3.6)
+    rjgit (0.3.7)
       mime-types (~> 1.15)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
@@ -84,5 +87,6 @@ DEPENDENCIES
   lock_jar
   pry
   rake
+  rb-readline
   rjgit
   rspec

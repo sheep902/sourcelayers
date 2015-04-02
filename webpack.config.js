@@ -6,6 +6,9 @@ module.exports = {
         "webpack/hot/dev-server?http://localhost:8080",
         './webapp/client.coffee'
     ],
+    headers: {
+       "Access-Control-Allow-Origin": "*" 
+    },
     devtool: 'eval-source-map',
     output: {
         path: path.join(__dirname, "dist"),
