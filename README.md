@@ -15,7 +15,7 @@ The author keeps his rights to relicense this repo and its contributions.
 ```
 npm install
 npm install webpack-dev-server -g
-webpack-dev-server --save
+webpack-dev-server --hot
 ```
 
 ## Design Decisions
@@ -72,4 +72,4 @@ For example, many websites provide instant search utilities, allowing every <inp
 
 But that's not what the user **wants to do**. In this case, all the previous inputs become meaningless to the user in every keystoke, and our app logic should just work that way.
 
-Use 'Component#forget(type)' to discard all previous intents that is with specified type & triggered by this component.
+Use 'Component#cancel_all(type)' to discard all previous intents that is of specified type & triggered by this component.

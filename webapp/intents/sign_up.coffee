@@ -5,3 +5,4 @@ worker (username, password)->
   xhr.open 'GET', "/api/?type=user&name=#{username}", no
   xhr.send()
   xhr.response
+

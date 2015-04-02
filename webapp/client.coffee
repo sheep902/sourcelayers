@@ -15,12 +15,11 @@ injectTapEventPlugin();
 PubSub = require 'pubsub-js'
 PubSub.immediateExceptions = true;
 
-# register transition handlers
-['start_search'].map (name)-> require "transitions/#{name}"
-
 Root = require 'components/root'
 
 root = React.createElement Root
+
+#require 'framework/debug'
 
 document.addEventListener "DOMContentLoaded", ->
   root_div = document.getElementById('sourcelayers-root')

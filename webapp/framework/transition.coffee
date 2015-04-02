@@ -3,11 +3,8 @@
 channel = require 'pubsub-js'
 state   = require 'framework/state'
 
-handler = (evt_name, func) ->
-  channel.subscribe "transition.#{evt_name}", (ignored, params)->
-    try
-      func.apply state, params
-    finally
-      state.commit()
+handler = (trans_name, func) ->
+  channel.subscribe "transition.#{trans_name}", (ignored, params)->
+    func.apply state, params
 
 module.exports = {handler, state}
