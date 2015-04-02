@@ -3,6 +3,7 @@ Component = require 'framework/component'
 Titlebar = require 'components/titlebar'
 Tree = require 'components/tree'
 SearchButton = require 'components/search_button'
+Histories = require 'components/histories'
 
 SignUp = require 'components/user/sign_up'
 
@@ -18,12 +19,5 @@ module.exports = Component
       </div>
       <SignUp className='main'/>
       <SearchButton className='main-button'/>
-      <div className='histories'>
-        <div className='history'>
-           history
-        </div>
-        <div className='history'>
-           history
-        </div>
-      </div>
+      <Histories/>
     </div>

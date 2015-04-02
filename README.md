@@ -52,7 +52,6 @@ webpack-dev-server --save
   |                    +--Query---->........../   |            +----------------+              +------------------+
   +--------------------+           +--------------+
 
-```
 
 Intent Worker: The equivalent of Flux's Action Handler. User's UI activities are meaningless to our App (e.g. typing chars in form) until we can finally infer what the user's real intention is (e.g. click sign up button -> create a user). An intent worker translate this intent into server command/state transitions.
 
@@ -62,4 +61,15 @@ Command: How the backend understands the intent. Optional.
 
 Transition: An intent worker triggers transitions to change app state. When a collision is detected in the transition handler, the handler may decide to solve it or terminate the intent worker.
 
-TODO intent collision set
+```
+###Intent
+
+####Conflict
+
+Intents can conflict with each other.
+
+For example, many websites provide instant search utilities, allowing every <input/> event to trigger a XHR and use some tricks (e.g. timestamps, queuing..) to ensure the view isn't corrupted by disordered callbacks.
+
+But that's not what the user **wants to do**. In this case, all the previous inputs become meaningless to the user in every keystoke, and our app logic should just work that way.
+
+Use 'Component#forget(type)' to discard all previous intents that is with specified type & triggered by this component.

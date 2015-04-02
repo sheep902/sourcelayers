@@ -1,18 +1,7 @@
 class Endpoints < Angelo::Base
-  get '/api/*ids' do
+  get '/api' do
     content_type :json
-
-    query = Query.new(params)
-    results = query.run
-    query.terminate
-
-    results
-  end
-
-  put '/api/:id' do
-    content_type :json
-    Command.new(params).async.run
-    {id: params[:id], status: 'submitted'}
+    Search.new(params.clone).results
   end
 
   eventsource '/api/watch/:ids' do |s|
@@ -21,13 +10,26 @@ class Endpoints < Angelo::Base
     s.on_close{sses(false).remove_socket s}
   end
 
-  task :update_record do |id|
-    query = FindById.new(id)
-    sses[id].message query.result.as_json
-    query.terminate
+  get '/api/:ids' do
+    content_type :json
+    FindById.new(params.clone).results
   end
 
-  get '/*' do # catch-all
-    'hello world'
+  # get '/api/:ids/[query name]' do
+  #
+  # end
+
+  put '/api/:id' do
+    content_type :json
+    Command.factory(params.clone).async.call
+    {id: params[:id], status: 'submitted'}
+  end
+
+  task :update_record do |id|
+    # sses[id].message FindById.new(id).results.as_json
+  end
+
+  get '/' do # catch-all
+    File.read 'index.html' do |f| f.read end
   end
 end

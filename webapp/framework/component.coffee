@@ -7,9 +7,19 @@ store = require 'framework/state'
 react_mixin =
   mixins: [store.mixin]
 
+  intents: {}
+
+  forget: (cmd_name)->
+    @intents[cmd_name]?.map (intent)-> intent.terminate
+    delete @intents[cmd_name]
+
   intent: (cmd_name, params...)->
     worker = require "intents/#{cmd_name}"
     intent = new worker
+
+    @intents[cmd_name] ||= []
+    @intents[cmd_name].add intent
+
     intent.onmessage = (e) ->
       evt_params = e.data.clone()
       evt_name = evt_params.shift()

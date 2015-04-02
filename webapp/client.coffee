@@ -4,8 +4,6 @@
 require 'sugar'
 Object.extend()
 
-NODE_ENV = 'development'
-
 React = require 'react'
 window.React = React
 
