@@ -70,6 +70,6 @@ Intents can conflict with each other.
 
 For example, many websites provide instant search utilities, allowing every <input/> event to trigger a XHR and use some tricks (e.g. timestamps, queuing..) to ensure the view isn't corrupted by disordered callbacks.
 
-But that's not what the user **wants to do**. In this case, all the previous inputs become meaningless to the user in every keystoke, and our app logic should just work that way.
+But that's not what the user **wants to do**. In this case, all the previous inputs become meaningless to the user within every keystoke, and our app logic should just work that way.
 
 Use 'Component#cancel_all(type)' to discard all previous intents that is of specified type & triggered by this component.
