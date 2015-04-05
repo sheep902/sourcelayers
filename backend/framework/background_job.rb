@@ -2,19 +2,18 @@ class BackgroundJob
   include Celluloid
   finalizer :cleanup
 
-  def initialize(params)
+  def initialize
     @store = $store.get_tx
-    @params = params
   end
 
-  attr_reader :store, :params
+  attr_reader :store
 
-  def task
+  def task(params)
     raise 'override this method'
   end
 
-  def results
-    task
+  def results(params)
+    task(params)
   ensure
     terminate
   end

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'angelo'
 
+gem 'reel', github: 'celluloid/reel'
 gem 'celluloid'
 
 gem 'activesupport'

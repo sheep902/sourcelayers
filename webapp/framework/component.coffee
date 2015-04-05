@@ -14,7 +14,7 @@ react_mixin =
   _intents: {}
 
   cancel_all: (cmd_name)->
-    @_intents[cmd_name]?.map (intent)-> intent.terminate
+    @_intents[cmd_name]?.map (intent)-> intent.terminate()
     delete @_intents[cmd_name]
 
   intent: (cmd_name, params...)->

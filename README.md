@@ -20,7 +20,7 @@ webpack-dev-server --hot
 bundle install
 bundle console
 google-chrome -disable-web-security
-(open http://localhost:8080)
+(open http://localhost:4567)
 
 ```
 
@@ -33,9 +33,10 @@ google-chrome -disable-web-security
  - Two-level state in frontend: app state and component state.
    - App state: single source of truth. A singleton Baobab tree.
      e.g. domain model.
-   - Component state: display state. Internal states are set by UI events or automatically inferred from
-   App state by component.
+   - Component state: display state. Internal states which are set by UI events/Transitions or automatically inferred from
+   App state.
      e.g. form content, button down/up.
+
  - TODO Background jobs may fail at any moment. Scalable fail-over?
  - TODO Some changes are local (e.g. git clone) and will not be automatically synchronized across machines.
 
@@ -70,7 +71,7 @@ Transition: An intent worker triggers transitions to change app state. When a co
 ```
 ###Intent
 
-####Conflict
+####Confliction
 
 Intents can conflict with each other.
 
@@ -78,4 +79,16 @@ For example, many websites provide instant search utilities, allowing every <inp
 
 But that's not what the user **wants to do**. In this case, all the previous inputs become meaningless to the user within every keystoke, and our app logic should just work that way.
 
-Use 'Component#cancel_all(type)' to discard all previous intents that is of specified type & triggered by this component.
+Use 'Component#cancel_all(type)' to discard all previous intents that is triggered by this component.
+
+
+###Backend
+
+####Query interface
+
+Two type of queries:
+
+- Search. Query against a OrientDB index, get a list of RIDs back.
+- Record. Get corresponding JSON Objects from RIDs.
+
+

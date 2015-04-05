@@ -5,6 +5,8 @@ LockJar.lock
 LockJar.install
 LockJar.load
 
+require 'java'
+
 # Ruby dependencies
 require 'angelo'
 require 'active_support/all'

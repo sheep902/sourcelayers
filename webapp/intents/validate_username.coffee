@@ -2,13 +2,13 @@
 
 worker (username)->
   xhr = new XMLHttpRequest()
-  xhr.open 'GET', "/api/?type=user&name=#{username}", no
+  xhr.open 'GET', "http://localhost:4567/api/?type=user&username=#{username}", no
   xhr.send()
 
-  existing_users = xhr.response
+  response = JSON.parse xhr.response
+  existing_users = response['results']
 
-  if not existing_users or existing_users.isEmpty?()
+  if existing_users.length
     transition 'username_duplicate'
   else
     transition 'username_available'
-
