@@ -10,6 +10,7 @@ g = OrientGraph.new 'plocal:db/orient'
 # Schemas
 
 g.create_vertex_type 'command'
+g.create_vertex_type 'params'
 
 g.create_vertex_type 'user'
 g.create_vertex_type 'history'

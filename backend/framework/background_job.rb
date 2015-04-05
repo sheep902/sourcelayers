@@ -18,8 +18,6 @@ class BackgroundJob
     terminate
   end
 
-  alias_method :call, :results
-
   def cleanup
     store.shutdown if $store
   end

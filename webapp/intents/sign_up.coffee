@@ -2,7 +2,8 @@
 
 worker (username, password)->
   xhr = new XMLHttpRequest()
-  xhr.open 'GET', "/api/?type=user&name=#{username}", no
+  xhr.open 'POST', "http://localhost:4567/api/", no
   xhr.send()
-  xhr.response
+
+
 

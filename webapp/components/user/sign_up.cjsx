@@ -6,8 +6,7 @@ RaisedButton = require('material-ui').RaisedButton
 require 'styles/user/sign-up'
 module.exports = Component
   transitions:
-    'username_available': -> console.log 'available'
-    'username_duplicate': -> console.log 'duplicate'
+    'username_duplication': (is_duplicate)-> @setState username_duplicate: is_duplicate
 
   sign_up: ->
     @intent 'sign_up',
@@ -22,12 +21,17 @@ module.exports = Component
   render: ->
     <div className={"sign-up #{@props.className}"}>
       <div className='form-item'>
-        <TextField hintText='User Name' ref='name_input' onChange={@validate_username}/>
+        <TextField hintText='User Name' ref='name_input' onChange={@validate_username}
+         errorText={if @state.username_duplicate then 'Username already exist.' else ''}/>
       </div>
       <div className='form-item'>
         <TextField hintText='Password' ref='psw_input'/>
       </div>
       <div className='form-item'>
-        <RaisedButton label="Sign Up" primary={true} onClick={@sign_up}/>
+        <RaisedButton label="Sign Up" primary={true} onClick={@sign_up}
+         disabled={
+           [@state.username_duplicate].any (error)-> error is yes
+         }
+        />
       </div>
     </div>

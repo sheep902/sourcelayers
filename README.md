@@ -89,6 +89,6 @@ Use 'Component#cancel_all(type)' to discard all previous intents that is trigger
 Two type of queries:
 
 - Search. Query against a OrientDB index, get a list of RIDs back.
-- Record. Get corresponding JSON Objects from RIDs.
+- Fetch. Get corresponding JSON Objects from RIDs.
 
 
