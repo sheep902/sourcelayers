@@ -13,28 +13,32 @@ react_mixin =
 
   _intents: {}
 
-  cancel_all: (cmd_name)->
-    @_intents[cmd_name]?.map (intent)-> intent.terminate()
-    delete @_intents[cmd_name]
+  cancel_all: (intent_name)->
+    # TODO cancelling command intents will be troublesome
+    @_intents[intent_name]?.map (intent)->
+      # intent.terminate() is syntactically better but it makes Chrome aw,snap :(
+      intent.onmessage = undefined
+      intent.postMessage 'terminate'
+    delete @_intents[intent_name]
 
-  intent: (cmd_name, params...)->
-    worker = require "intents/#{cmd_name}"
+  intent: (intent_name, params...)->
+    worker = require "intents/#{intent_name}"
     intent = new worker
-    (@_intents[cmd_name] ||= []).add intent
+    (@_intents[intent_name] ||= []).add intent
 
     intent.onmessage = (e) ->
-      evt_params = e.data.clone()
-      evt_name = evt_params.shift()
-      channel.publish "transition.#{evt_name}", evt_params
+      trans_params = e.data.clone()
+      trans_name = trans_params.shift()
+      channel.publish "transition.#{trans_name}", trans_params
 
     intent.postMessage(params)
 
 #  transitions: {}
 
   componentWillMount: ->
-    @transitions?.keys (trans_name, handler)->
-      token = channel.subscribe "transition.#{trans_name}", (ignored, params)->
-        handler.apply state, params
+    @transitions?.keys (trans_name, handler)=>
+      token = channel.subscribe "transition.#{trans_name}", (ignored, params)=>
+        handler.apply this, params
 
       (@_trans_handlers ||= []).add token
 

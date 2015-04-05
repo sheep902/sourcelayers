@@ -1,12 +1,14 @@
 class Endpoints < Angelo::Base
-  get '/api/' do
-    content_type :json
-    Search.new.results params.as_json.symbolize_keys
-  end
-
   get '/api/:ids' do
     content_type :json
+    puts 'hit get'
     Get.new.results params.as_json.symbolize_keys[:ids]
+  end
+
+  get '/api/' do
+    content_type :json
+    puts 'hit search'
+    Search.new.results params.as_json.symbolize_keys
   end
 
   eventsource '/api/watch/:ids' do |s|
