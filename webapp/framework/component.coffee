@@ -17,7 +17,7 @@ react_mixin =
     # TODO cancelling command intents will be troublesome
     @_intents[intent_name]?.map (intent)->
       # intent.terminate() is syntactically better but it makes Chrome aw,snap :(
-      intent.onmessage = undefined
+      intent.close()
     delete @_intents[intent_name]
 
   intent: (intent_name, params...)->

@@ -13,7 +13,7 @@ class OrientVertex
     get_identity.to_s.delete '#'
   end
 
-  def as_json
+  def as_json(ignored=nil)
     get_property_keys.map{|key| {key => self[key]}}.push(id: id)
       .inject(&:merge).symbolize_keys
   end

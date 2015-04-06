@@ -23,10 +23,13 @@ class UpdateTrigger < ORecordHookAbstract
   end
 
   def onRecordAfterUpdate(r)
+    id = r.get_identity.to_s.delete '#'
+    return unless id =~ /[0-9]+:[0-9]+/
+
     server = Celluloid::Actor[:server]
 
     if server and server.alive?
-      Celluloid::Actor[:server].async.update_record r.get_identity.to_s
+      Celluloid::Actor[:server].async.update_record id
     end
   end
 

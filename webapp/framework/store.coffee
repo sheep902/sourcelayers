@@ -28,9 +28,13 @@ fetch = (ids...)->
 
   JSON.parse(xhr.response)['results']
 
-command = (command, params...)->
+# backend prefer named parameters instead of parameter array
+# e.g. {username: 'bob', password: 'alice'}
+command = (command, params)->
+  # commands are always triggered in intent workers
   xhr = new XMLHttpRequest()
-  xhr.open 'POST', "http://localhost:4567/api/#{command}", no # commands are always triggered in intent workers
+  xhr.open 'POST', "http://localhost:4567/api/#{command}", no
+  xhr.setRequestHeader 'Content-Type', 'application/json'
   xhr.send JSON.stringify(params)
 
   JSON.parse(xhr.response)

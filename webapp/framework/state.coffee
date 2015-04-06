@@ -14,19 +14,32 @@ state = new Baobab
   mixins: [ReactAddons.PureRenderMixin]
   shiftReferences: true
 
+# Fetching
+
+handler 'records', (records...)->
+  records.map (record)->
+    state.select('records').set(record.id, record) if record.id?
+
+# Watching
 current_watching = -> state.select('watching').get()
-
-handler 'fetch', (ids...)->
-
 
 handler 'watch', (ids...)->
   ids.map (id)->
     unless id in current_watching()
       state.select('watching').push(id)
 
-handler 'unwatch', (ids...)->
+handler 'forget', (ids...)->
   state.set 'watching', current_watching().remove(ids)
 
-state.select('watching').on 'update', (params...) -> console.log params # update EventSource
+evt_source = undefined
+
+state.select('watching').on 'update', (params...)->
+  evt_source?.close()
+
+  query = state.select('watching').get().join(',')
+  evt_source = new EventSource "http://localhost:4567/api/#{query}?sse=yes"
+  evt_source.onmessage = (evt)->
+    record = evt.data
+    state.select('records').set record.id, record if record.id?
 
 module.exports = state

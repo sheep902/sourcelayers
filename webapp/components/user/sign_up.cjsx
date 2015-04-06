@@ -9,9 +9,7 @@ module.exports = Component
     'username_duplication': (is_duplicate)-> @setState username_duplicate: is_duplicate
 
   sign_up: ->
-    @intent 'sign_up',
-      username: @refs.name_input.getValue()
-      password: @refs.psw_input.getValue()
+    @intent 'sign_up', @refs.name_input.getValue(), @refs.psw_input.getValue()
 
   validate_username: (change_evt)->
     username = change_evt.target.value
