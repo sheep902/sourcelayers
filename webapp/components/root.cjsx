@@ -5,11 +5,12 @@ Tree = require 'components/tree'
 SearchButton = require 'components/search_button'
 Histories = require 'components/histories'
 
-SignUp = require 'components/user/sign_up'
+Entry = require 'components/user/entry'
 
 module.exports = Component
   cursors:
-    main: 'main'
+    main: ['current', 'main']
+    user: ['current', 'user']
 
   render: ->
     <div className='root'>
@@ -17,7 +18,16 @@ module.exports = Component
         <Titlebar/>
         <Tree/>
       </div>
-      <SignUp className='main'/>
+      {
+        if @state.cursors.user
+          switch @state.cursors.main
+            when 'project' then undefined
+            when 'file' then undefined
+            when 'document' then undefined
+            when 'user' then undefined
+        else
+          <Entry className='main'/>
+      }
       <SearchButton className='main-button'/>
       <Histories/>
     </div>

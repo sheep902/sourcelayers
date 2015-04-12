@@ -7,9 +7,10 @@ state = new Baobab
   watching: []
   records: {}
 
-  view: ''
-  document: undefined
-  history_list: undefined
+  current: {}
+
+  user:
+    entry: {}
 ,
   mixins: [ReactAddons.PureRenderMixin]
   shiftReferences: true

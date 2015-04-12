@@ -45,9 +45,9 @@ google-chrome -disable-web-security
          Backend                                                               Frontend
 
   +--------------------+           +--------------+            +----------------+
-  |                    |           |           ...+----Query--->                <---Cancel-----+
-  |   Command Worker   <--Spawn----+.......    .  |            |  Intent Worker |              |
-  |                    |           |       \...|..<--Command---+                <---Spawn--+   |
+  |                    |      +--------+       ...+----Query--->                <---Cancel-----+
+  |   Command Worker   <----->| Caller |...    .  |            |  Intent Worker |              |
+  |                    |      +--------+   \...|..<--Command--->                <---Spawn--+   |
   +----^---------------+           |           .  |            +-------+--------+          |   |
        |                           |           .  |                    |                   |   |
      Direct                        |   Endpoint.  |                Transition              |   |
@@ -58,7 +58,6 @@ google-chrome -disable-web-security
   |   OrientDB Store   |           |           ...+----Query--->                +----Query---->|                  |
   |                    +--Query---->........../   |            +----------------+              +------------------+
   +--------------------+           +--------------+
-
 
 Intent Worker: The equivalent of Flux's Action Handler. User's UI activities are meaningless to our App (e.g. typing chars in form) until we can finally infer what the user's real intention is (e.g. click sign up button -> create a user). An intent worker translate this intent into server command/state transitions.
 
@@ -80,6 +79,8 @@ For example, many websites provide instant search utilities, allowing every <inp
 But that's not what the user **wants to do**. In this case, all the previous inputs become meaningless to the user within every keystoke, and our app logic should just work that way.
 
 Use 'Component#cancel_all(type)' to discard all previous intents that is triggered by this component.
+
+TODO marking command intents
 
 
 ###Backend

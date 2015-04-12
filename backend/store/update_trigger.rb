@@ -24,7 +24,7 @@ class UpdateTrigger < ORecordHookAbstract
 
   def onRecordAfterUpdate(r)
     id = r.get_identity.to_s.delete '#'
-    return unless id =~ /[0-9]+:[0-9]+/
+    return unless id =~ /[0-9]+:[0-9]+/ # TODO better support
 
     server = Celluloid::Actor[:server]
 
