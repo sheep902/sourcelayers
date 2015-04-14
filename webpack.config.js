@@ -35,7 +35,7 @@ module.exports = {
         ],
         postLoaders: [
             {test: /intents\//, loader: 'webworker'},
-            {test: /components\//, loader: 'react-hot', except: /node_modules/}
+            {test: /components\//, loader: 'React-hot', except: /node_modules/}
         ]
     },
     plugins: [
