@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: [
         "webpack/hot/dev-server?http://localhost:8080",
-        './webapp/client.coffee'
+        './webapp/browser.coffee'
     ],
     headers: {
        "Access-Control-Allow-Origin": "*" 

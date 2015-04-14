@@ -4,5 +4,3 @@ global.React = require 'react'
 require 'sugar'
 Object.extend()
 
-Worker.prototype.close = ->
-  @onmessage = undefined
