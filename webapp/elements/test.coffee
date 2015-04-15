@@ -1,7 +1,6 @@
 {div} = require 'framework/elements'
 
 module.exports =
-  store: ->
-
-  markup: ->
-    div 'hello world'
+  render: ->
+    div {},
+      'hello world'

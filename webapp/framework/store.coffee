@@ -1,8 +1,8 @@
 Baobab = require 'baobab'
-ReactAddons = require 'react/addons'
+ReactWithAddons = require 'react/addons'
 
 module.exports = new Baobab
   records: {}
 ,
-  mixins: [ReactAddons.PureRenderMixin]
+  mixins: [ReactWithAddons.PureRenderMixin]
   shiftReferences: true

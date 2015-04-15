@@ -3,4 +3,16 @@
 # sugar.js
 require 'env'
 
-require 'elements/test'
+# required by material-ui
+injectTapEventPlugin = require "react-tap-event-plugin"
+injectTapEventPlugin();
+
+# pubsub.js
+PubSub = require 'pubsub-js'
+PubSub.immediateExceptions = true;
+
+{test} = require 'framework/elements'
+
+document.addEventListener "DOMContentLoaded", ->
+  root_div = document.getElementById('sourcelayers-root')
+  React.render(test(), root_div)

@@ -1,7 +1,7 @@
-require.context('../intents', yes, /\.coffee$/).keys()
-  .map (name)-> name[2..-8]
+intents = {}
+
+require.context('../intents', yes, /\.coffee$/).keys().map (name)-> name[2..-8]
   .forEach (name)->
-    elements[name] = (params...)->
-      intent = require("intents/#{name}")
+    intents[name] = require("intents/#{name}")
 
-
+module.exports = intents

@@ -35,7 +35,7 @@ module.exports = {
         ],
         postLoaders: [
             {test: /intents\//, loader: 'webworker'},
-            {test: /components\//, loader: 'React-hot', except: /node_modules/}
+            {test: /elements\//, loader: 'react-hot', except: /node_modules/}
         ]
     },
     plugins: [
@@ -49,6 +49,10 @@ module.exports = {
         ),
         new webpack.ContextReplacementPlugin(
             /intents\//,
+            path.join(__dirname, "webapp")
+        ),
+        new webpack.ContextReplacementPlugin(
+            /elements\//,
             path.join(__dirname, "webapp")
         )
     ]
