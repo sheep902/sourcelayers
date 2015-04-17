@@ -22,24 +22,16 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.cjsx$/, loader: 'coffee!cjsx'},
+            {test: /intents/, loader: 'webworker'},
+            {test: /elements\//, loader: 'react-hot'},
             {test: /\.coffee$/, loader: 'coffee'},
-            {test: /\.js$/, loader: 'babel', exclude: /node_modules/},
-            {test: /\.jsx$/, loader: 'jsx'},
-            {test: /\.json$/, loader: 'json'},
-            {test: /\.less$/,loader: "style!css!less"},
-            {test: /\.css$/,loader: "style!css"},
-            {test: /\.(gif|png|jpg)$/,loader: 'image?optimizationLevel=7&interlaced=false'},
-            {test:/\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/,loader: "url?limit=10000&minetype=application/font-woff"},
-            {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,loader: "file"}
-        ],
-        postLoaders: [
-            {test: /intents\//, loader: 'webworker'},
-            {test: /elements\//, loader: 'react-hot', except: /node_modules/}
+            {test: /\.js$/, loader: 'babel'},
+            {test: /\.less$/,loader: "style!css!less"}
         ]
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"development"'
         }),

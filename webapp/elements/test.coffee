@@ -1,6 +1,10 @@
-{div} = require 'framework/elements'
+{element} = require 'framework/framework'
+{div, p} = require 'framework/elements'
 
-module.exports =
+module.exports = element
   render: ->
     div {},
-      'hello world'
+      p {},
+        'hello world'
+      p {},
+        'hello react'
