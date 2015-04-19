@@ -2,12 +2,15 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+    node: {
+      __filename: true
+    },
     entry: [
         "webpack/hot/dev-server?http://localhost:8080",
         './webapp/browser.coffee'
     ],
     headers: {
-       "Access-Control-Allow-Origin": "*" 
+       "Access-Control-Allow-Origin": "*"
     },
     devtool: 'eval-source-map',
     output: {
@@ -16,13 +19,13 @@ module.exports = {
         publicPath: "http://localhost:8080/assets/"
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.scss', '.less', '.cjsx', '.coffee'],
+        extensions: ['', '.js', '.less', '.coffee'],
         root: path.resolve(__dirname) + 'webapp',
         modulesDirectories: ['node_modules', 'webapp']
     },
     module: {
         loaders: [
-            {test: /intents/, loader: 'webworker'},
+            {test: /intents\//, loader: 'webworker?inline'},
             {test: /elements\//, loader: 'react-hot'},
             {test: /\.coffee$/, loader: 'coffee'},
             {test: /\.js$/, loader: 'babel'},
