@@ -1,40 +1,21 @@
-# pubsub.js
 PubSub = require 'pubsub-js'
 PubSub.immediateExceptions = true;
 
-in_worker = self.WorkerGlobalScope?
-
-# monkey patches
 require 'sugar'
 Object.extend()
 
-if in_worker
-  module.exports =
-    intent: (spec)->
-      @onmessage = ({data})->
-        try
-          spec data
-        finally
-          close()
-else
-  Baobab = require 'baobab'
-  ReactWithAddons = require 'react/addons'
+React = require 'react'
+Bluebird = require 'bluebird'
 
-  store = new Baobab
-    records: {}
-  ,
-    mixins: [ReactWithAddons.PureRenderMixin]
-    shiftReferences: true
+state = require 'framework/state'
 
-  framework =
-    element: (spec)->
-      (spec.mixins ||= []).add store.mixin
-      ReactWithAddons.createClass spec
+framework =
+  element: (spec)->
+    (spec.mixins ||= []).add state.mixin
+    React.createClass spec
 
-    store: store
+  intent: Bluebird.method
 
-    intent: (spec)-> spec
+  event: (func)-> func
 
-    transition: (func)-> func
-
-  module.exports = framework
+module.exports = framework

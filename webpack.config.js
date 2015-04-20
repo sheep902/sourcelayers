@@ -6,7 +6,7 @@ module.exports = {
       __filename: true
     },
     entry: [
-        "webpack/hot/dev-server?http://localhost:8080",
+        "webpack/hot/dev-server",
         './webapp/browser.coffee'
     ],
     headers: {
@@ -25,7 +25,6 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /intents\//, loader: 'webworker?inline'},
             {test: /elements\//, loader: 'react-hot'},
             {test: /\.coffee$/, loader: 'coffee'},
             {test: /\.js$/, loader: 'babel'},
@@ -39,7 +38,7 @@ module.exports = {
             'process.env.NODE_ENV': '"development"'
         }),
         new webpack.ContextReplacementPlugin(
-            /transitions\//,
+            /events\//,
             path.join(__dirname, "webapp")
         ),
         new webpack.ContextReplacementPlugin(

@@ -1,5 +1,5 @@
 {intent} = require 'framework/framework'
-{did_transition} = require 'framework/transitions'
+{did_happen} = require 'framework/events'
 
 module.exports = intent (params)->
-  did_transition 'do something'
+  did_happen 'param'

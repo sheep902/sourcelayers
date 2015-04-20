@@ -4,32 +4,27 @@
   "description": "##Introduction",
   "main": "config/application.coffee",
   "dependencies": {
-    "baobab": "^0.4.3",
+    "baobab": "^0.4.4",
+    "bluebird": "^2.9.24",
+    "material-ui": "^0.7.3",
     "pubsub-js": "^1.5.2",
-    "react": "^0.13.1",
+    "react": "^0.13.2",
     "react-tap-event-plugin": "^0.1.6",
-    "material-ui": "^0.7.2",
     "sugar": "^1.4.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",
-    "babel-loader": "^4.3.0",
-    "cjsx-loader": "^2.0.1",
+    "babel-loader": "^5.0.0",
     "coffee-loader": "^0.7.2",
-    "coffee-script": "^1.9.1",
-    "css-loader": "^0.9.1",
-    "file-loader": "^0.8.1",
-    "image-webpack-loader": "^1.4.0",
-    "jsx-loader": "^0.12.2",
-    "less": "^2.4.0",
+    "coffee-script": "^1.9.2",
+    "css-loader": "^0.10.1",
+    "less": "^2.5.0",
     "less-loader": "^2.2.0",
-    "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.2.5",
-    "style-loader": "^0.9.0",
+    "style-loader": "^0.10.2",
     "url-loader": "^0.5.5",
-    "webpack": "^1.7.3",
-    "webpack-dev-server": "^1.8.0",
-    "webworker-loader": "^0.1.0"
+    "webpack": "^1.8.5",
+    "webpack-dev-server": "^1.8.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
