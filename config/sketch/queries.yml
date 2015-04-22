@@ -1,0 +1,15 @@
+project:
+  - search
+  - lookup
+
+directory:
+  - lookup
+
+identifier:
+  - revert
+  - lookup
+
+workspace:
+  - search
+
+# + index queries 

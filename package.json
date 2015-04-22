@@ -7,10 +7,12 @@
     "baobab": "^0.4.4",
     "bluebird": "^2.9.24",
     "material-ui": "^0.7.3",
+    "node-uuid": "^1.4.3",
     "pubsub-js": "^1.5.2",
     "react": "^0.13.2",
     "react-tap-event-plugin": "^0.1.6",
-    "sugar": "^1.4.1"
+    "sugar": "^1.4.1",
+    "yaml-loader": "^0.1.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",

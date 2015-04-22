@@ -1,0 +1,20 @@
+# indexed properties
+# used for retrieving domain models from nothing
+
+user:
+  username: string
+
+project:
+  remote: string
+  name: string
+
+indentifier:
+  name: string
+  resolve: identifier
+
+document:
+  title: string
+  content: string
+
+file:
+  content: string

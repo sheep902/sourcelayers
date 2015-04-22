@@ -1,5 +1,6 @@
 Promise = require 'bluebird'
 {state} = require 'framework/framework'
+server = require 'sketch/server'
 
 xhr_promise = ({method, url, payload}) ->
   xhr = new XMLHttpRequest()
@@ -35,20 +36,25 @@ update_sse = ->
 
   event_source.onmessage = ({data})-> state.select('records').set(data.id, data)
 
-module.exports =
-  command: (name, param)->
-    command name, param
+fetch = (ids...)->
+  query ids.join ','
 
-  search: (index, params)->
-    query index, params
+subscribe = (ids...)->
+  watching_ids.add ids
+  update_sse()
 
-  fetch: (ids...)->
-    query ids.join ','
+unsubscribe = (ids...)->
+  watching_ids.remove (id)-> id in ids
+  update_sse()
 
-  subscribe: (ids...)->
-    watching_ids.add ids
-    update_sse()
+APIs = {}
 
-  unsubscribe: (ids...)->
-    watching_ids.remove (id)-> id in ids
-    update_sse()
+server.commands.forEach (name)->
+  APIs[name] = (params)-> command name, params
+
+server.indexes.forEach (name)->
+  [model, prop] = name.split '.'
+  APIs[model] ||= {}
+  APIs[model][prop] = (params) -> query "#{model}/#{prop}", params
+
+module.exports = APIs

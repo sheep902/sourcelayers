@@ -1,0 +1,23 @@
+user:
+  - sign_up
+  - sign_in
+
+project:
+  - upload
+  - rename
+  - follow
+
+workspace:
+  - create
+  - rename
+  - append
+  - reorder
+  - delete
+
+history:
+  - create
+  - rename
+  - delete
+
+document:
+  - create

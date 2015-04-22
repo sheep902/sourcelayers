@@ -1,5 +1,5 @@
-# Intent
-# Intents are 
+uuid = require 'node-uuid'
+channel = require 'pubsub-js'
 
 intents = {}
 

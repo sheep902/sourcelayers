@@ -7,7 +7,7 @@ module.exports = {
     },
     entry: [
         "webpack/hot/dev-server",
-        './webapp/browser.coffee'
+        './webapp/entry.coffee'
     ],
     headers: {
        "Access-Control-Allow-Origin": "*"
@@ -19,9 +19,12 @@ module.exports = {
         publicPath: "http://localhost:8080/assets/"
     },
     resolve: {
-        extensions: ['', '.js', '.less', '.coffee'],
+        extensions: ['', '.js', '.less', '.coffee', '.yml'],
         root: path.resolve(__dirname) + 'webapp',
-        modulesDirectories: ['node_modules', 'webapp']
+        fallback: [
+            path.resolve(__dirname) + 'config'
+        ],
+        modulesDirectories: ['node_modules']
     },
     module: {
         loaders: [

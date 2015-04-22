@@ -1,0 +1,68 @@
+# shapes of domain models
+
+user:
+  username: string
+  password: string
+  links:
+    workspaces:
+      - workspace
+
+project:
+  name: string
+  remote: string
+  links:
+    root: directory
+
+directory:
+  name: string
+  links:
+    project: project
+    parent: directory
+    children:
+      - directory
+      - file
+
+file:
+  name: string
+  type: string
+  links:
+    parent: directory
+    identifiers:
+      - identifier
+
+identifier:
+  name: string
+  type: string
+  links:
+    file: file
+    position: number
+    parent: identifier
+    defs:
+      - identifier
+    refs:
+      - identifier
+
+workspace:
+  name: string
+  links:
+    histories:
+      - history
+
+history:
+  name: string
+  links:
+    file: file
+    position: position
+    identifier: identifier
+
+document:
+  title: string
+  content: string
+  links:
+    project: project
+    children:
+      - document
+    relevant:
+      - document
+    histories:
+      - history
