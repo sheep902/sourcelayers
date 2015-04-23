@@ -1,5 +1,8 @@
 # shapes of domain models
 
+session:
+  user: user
+
 user:
   username: string
   password: string

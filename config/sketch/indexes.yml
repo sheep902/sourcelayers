@@ -1,20 +1,23 @@
-# indexed properties
-# used for retrieving domain models from nothing
-
 user:
-  username: string
+  username:
+    type: string
 
 project:
-  remote: string
-  name: string
+  remote:
+    type: string
 
-indentifier:
-  name: string
-  resolve: identifier
+project:
+  name:
+    type: string
 
 document:
-  title: string
-  content: string
+  title:
+    type: string
+
+document:
+  content:
+    type: string
 
 file:
-  content: string
+  content:
+    type: string

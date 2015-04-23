@@ -1,23 +1,28 @@
-user:
+app:
   - sign_up
   - sign_in
 
+user:
+  - create_workspace
+  - create_history
+  - create_document
+  - upload_project
+
 project:
-  - upload
   - rename
   - follow
 
 workspace:
-  - create
   - rename
   - append
   - reorder
   - delete
 
 history:
-  - create
   - rename
   - delete
 
 document:
   - create
+  - update
+  - delete

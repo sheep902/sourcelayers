@@ -1,15 +1,13 @@
 project:
   - search
-  - lookup
 
 directory:
-  - lookup
+  - search
 
 identifier:
+  - search
   - revert
-  - lookup
 
 workspace:
   - search
 
-# + index queries 

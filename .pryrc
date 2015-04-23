@@ -1,1 +1,1 @@
-require 'backend/env'
+require 'server/entry'
