@@ -1,9 +1,5 @@
-class Command
-  def self.command_name
-    name.underscore
-  end
-
-  def self.model
-    nil
+class Command < Job
+  def run(params)
+    raise 'override this'
   end
 end

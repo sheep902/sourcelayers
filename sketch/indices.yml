@@ -1,0 +1,40 @@
+session:
+  - prop: token
+    type: hash
+
+user:
+  - prop: username
+    type: string
+
+project:
+  - prop: name
+    type: string
+  - prop: remote
+    type: string
+  - prop: description
+    type: string
+
+document:
+  - props: path
+    type: string
+  - props: name
+    type: string
+
+file:
+  - props: path
+    type: string
+  - props: name
+    type: string
+  - props: content
+    type: string
+
+identifier:
+  - prop: path
+    type: string
+
+document:
+  - prop: content
+    type: string
+  - prop: title
+    type: string
+

@@ -1,0 +1,30 @@
+# TODO delete this
+
+app:
+  - sign_up
+  - sign_in
+
+user:
+  - create_workspace
+  - create_history
+  - create_document
+  - upload_project
+
+project:
+  - rename_project
+  - follow_project
+
+workspace:
+  - rename_workspace
+  - append_history
+  - reorder_histories
+  - delete_workspace
+
+history:
+  - rename_history
+  - delete_history
+
+document:
+  - create_document
+  - update_document
+  - delete_document

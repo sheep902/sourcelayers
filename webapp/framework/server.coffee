@@ -1,6 +1,5 @@
 Promise = require 'bluebird'
 {state} = require 'framework/framework'
-server = require 'sketch/server'
 
 xhr_promise = ({method, url, payload}) ->
   xhr = new XMLHttpRequest()
@@ -16,10 +15,10 @@ xhr_promise = ({method, url, payload}) ->
 
 API_URL = 'http://localhost:8080/api'
 
-query = (name, params)->
+query = (name, sql)->
   xhr_promise
     name: 'GET'
-    url:  "#{API_URL}/#{name}?#{params.toQueryString()}"
+    url:  "#{API_URL}?params=#{sql.escapeURL(true)}"
 
 command = (name, params)->
   xhr_promise
@@ -27,34 +26,13 @@ command = (name, params)->
     url:  "#{API_URL}/#{name}"
     payload: JSON.stringify(params)
 
-event_source = undefined
-watching_ids = []
+API = {}
 
-update_sse = ->
-  event_source?.close()
-  event_source = new EventSource "#{API_URL}/#{watching_ids.join ','}"
+commands = require 'sketch/commands'
 
-  event_source.onmessage = ({data})-> state.select('records').set(data.id, data)
+commands.forEach (name)->
+  API[name] = (params)-> command name, params
 
-fetch = (ids...)->
-  query ids.join ','
+API.query = query
 
-subscribe = (ids...)->
-  watching_ids.add ids
-  update_sse()
-
-unsubscribe = (ids...)->
-  watching_ids.remove (id)-> id in ids
-  update_sse()
-
-APIs = {}
-
-server.commands.forEach (name)->
-  APIs[name] = (params)-> command name, params
-
-server.indexes.forEach (name)->
-  [model, prop] = name.split '.'
-  APIs[model] ||= {}
-  APIs[model][prop] = (params) -> query "#{model}/#{prop}", params
-
-module.exports = APIs
+module.exports = API

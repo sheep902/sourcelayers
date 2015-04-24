@@ -1,14 +1,15 @@
 # shapes of domain models
 
 session:
-  user: user
+  token: string
+  links:
+    user: user
 
 user:
   username: string
   password: string
   links:
-    workspaces:
-      - workspace
+    workspaces: workspace
 
 project:
   name: string
@@ -21,17 +22,15 @@ directory:
   links:
     project: project
     parent: directory
-    children:
-      - directory
-      - file
+    child_dirs: directory
+    child_files: file
 
 file:
   name: string
   type: string
   links:
     parent: directory
-    identifiers:
-      - identifier
+    identifiers: identifier
 
 identifier:
   name: string
@@ -40,16 +39,13 @@ identifier:
     file: file
     position: number
     parent: identifier
-    defs:
-      - identifier
-    refs:
-      - identifier
+    defs: identifier
+    refs: identifier
 
 workspace:
   name: string
   links:
-    histories:
-      - history
+    histories: history
 
 history:
   name: string
@@ -63,9 +59,6 @@ document:
   content: string
   links:
     project: project
-    children:
-      - document
-    relevant:
-      - document
-    histories:
-      - history
+    children: document
+    relevant: document
+    histories: history

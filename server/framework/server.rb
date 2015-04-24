@@ -1,26 +1,12 @@
 class Server < Angelo::Base
-
-  classes = -> (type) do
-    type = type.to_s.pluralize
-    base_path = "server/#{type}"
-
-    names = Pathname.glob("#{base_path}/*.rb").map{ |name| name.basename '.*' }.map(&:to_s)
-    names.map{ |name| name.classify.constantize }
+  post '/api/:command' do |c| # POST /api/command/ body: params
+    Command = App.all(:commands).fetch(params[:command])
+    Command.new.exec(params.except :command)
   end
 
-  # command handlers
-  commands = classes.call :commands
-  commands.each do |klass|
-    post ['/api', klass.model, klass.command_name].join('/') do |c|
-
-    end
+  get '/api' do |c| # GET /api?query=SELECT * FROM ...
+    sql = params[:query]
+    Query.new.exec(sql)
+    # TODO eventsource
   end
-
-  queries = classes.call :queries
-  queries.each do |klass|
-    get ['/api', klass.query_name].join('/') do |c|
-
-    end
-  end
-
 end
