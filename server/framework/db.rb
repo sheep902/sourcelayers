@@ -53,6 +53,15 @@ module DB
         }
       }
 
+      models = App.sketch_of :indices
+
+      models.each{ |model, indices|
+        indices.each{ |index|
+          props, type = index.values_at :props, :type
+          sql << "create index #{model}.#{props.gsub ' ', '_'} on #{model} (#{props.gsub ' ', ','}) #{type}\n";
+        }
+      }
+
       run sql
     end
 

@@ -1,40 +1,40 @@
 session:
-  - prop: token
-    type: hash
+  - props: token
+    type: unique
 
 user:
-  - prop: username
-    type: string
+  - props: username
+    type: fulltext
 
 project:
-  - prop: name
-    type: string
-  - prop: remote
-    type: string
-  - prop: description
-    type: string
+  - props: name
+    type: fulltext
+  - props: remote
+    type: fulltext
+  - props: description
+    type: fulltext
 
 document:
   - props: path
-    type: string
+    type: fulltext
   - props: name
-    type: string
+    type: fulltext
 
 file:
   - props: path
-    type: string
+    type: fulltext
   - props: name
-    type: string
+    type: fulltext
   - props: content
-    type: string
+    type: fulltext
 
 identifier:
-  - prop: path
-    type: string
+  - props: path
+    type: fulltext
 
 document:
-  - prop: content
-    type: string
-  - prop: title
-    type: string
+  - props: content
+    type: fulltext
+  - props: title
+    type: fulltext
 

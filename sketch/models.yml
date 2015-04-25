@@ -14,6 +14,7 @@ user:
 project:
   name: string
   remote: string
+  description: string
   links:
     root: directory
 
@@ -28,6 +29,8 @@ directory:
 file:
   name: string
   type: string
+  path: string
+  content: string
   links:
     parent: directory
     identifiers: identifier
@@ -35,6 +38,7 @@ file:
 identifier:
   name: string
   type: string
+  path: string
   links:
     file: file
     position: number
@@ -55,6 +59,7 @@ history:
     identifier: identifier
 
 document:
+  path: string
   title: string
   content: string
   links:
