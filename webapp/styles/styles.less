@@ -1,31 +1,31 @@
 @import 'reset.less';
 
+@import "../../node_modules/material-ui/src/less/scaffolding.less";
+
+span.button-sample {
+  color: @accent-1-color;
+}
+
+span.accent {
+  color: @accent-1-color;
+}
+
+span.primary {
+  color: @primary-1-color;
+}
+
+//App Colors
+@primary-1-color: @teal-500;
+@primary-2-color: @teal-700;
+@primary-3-color: @teal-100;
+@accent-1-color: @pink-A200;
+@accent-2-color: @pink-A400;
+@accent-3-color: @pink-A100;
+
+@import "../../node_modules/material-ui/src/less/components.less";
+
 #sourcelayers-root {
   > .root {
-    @import "../../node_modules/material-ui/src/less/scaffolding.less";
-
-    span.button-sample {
-      color: @accent-1-color;
-    }
-
-    span.accent {
-      color: @accent-1-color;
-    }
-
-    span.primary {
-      color: @primary-1-color;
-    }
-
-    //App Colors
-    @primary-1-color: @teal-500;
-    @primary-2-color: @teal-700;
-    @primary-3-color: @teal-100;
-    @accent-1-color: @pink-A200;
-    @accent-2-color: @pink-A400;
-    @accent-3-color: @pink-A100;
-
-    @import "../../node_modules/material-ui/src/less/components.less";
-
     left: 0;
     top: 0;
     position: fixed;
@@ -42,7 +42,7 @@
       display: flex;
       flex-direction: column;
 
-      > .title {
+      > .titlebar {
         background: @primary-1-color;
         color: white;
         height: 200px;
@@ -53,9 +53,9 @@
         overflow-x: hidden;
         overflow-y: auto;
 
-        > .tree-item {
+        .tree-item {
           height: 64px;
-
+          border-bottom: solid #efefef 1px;
         }
 
         border-right: solid #efefef 1px;
@@ -67,6 +67,7 @@
 
       border-left: solid #efefef 1px;
       border-right: solid #efefef 2px;
+
     }
 
     > .histories {

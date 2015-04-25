@@ -7,7 +7,7 @@ xhr_promise = ({method, url, payload}) ->
   return new Promise (resolve, reject)->
     xhr.addEventListener("error", reject)
     xhr.addEventListener("load", resolve)
-    xhr.open("GET", url)
+    xhr.open(method, url)
     xhr.send(payload)
   .cancellable().catch Promise.CancellationError, (e)->
     xhr.abort()
@@ -17,20 +17,19 @@ API_URL = 'http://localhost:8080/api'
 
 query = (sql)->
   xhr_promise
-    name: 'GET'
+    method: 'GET'
     url:  "#{API_URL}?params=#{sql.escapeURL(true)}"
 
 command = (name, params)->
   xhr_promise
-    name: 'POST'
+    method: 'POST'
     url:  "#{API_URL}/#{name}"
     payload: JSON.stringify(params)
 
 API = {}
 
-commands = require 'sketch/commands'
-
-commands.forEach (name)->
+# commands is defined by webpack
+commands.forEach (model)->
   API[name] = (params)-> command name, params
 
 API.query = query

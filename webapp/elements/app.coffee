@@ -8,7 +8,7 @@ module.exports = element
     do_something 'something'
 
   render: ->
-    div onClick: @handle_click,
+    div onClick: @handle_click, className: 'root',
       p {},
         'hello world'
       p {},

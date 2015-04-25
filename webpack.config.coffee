@@ -1,5 +1,10 @@
-path = require('path')
-webpack = require('webpack')
+path = require 'path'
+webpack = require 'webpack'
+
+fs = require 'fs'
+
+commands =  fs.readdirSync 'server/commands'
+  .map (name)-> name[0..-4]
 
 config =
   node:
@@ -55,7 +60,8 @@ config =
   plugins: [
     new webpack.NoErrorsPlugin()
     new webpack.HotModuleReplacementPlugin()
-    new webpack.DefinePlugin('process.env.NODE_ENV': '"development"')
+    new webpack.DefinePlugin 'process.env.NODE_ENV': '"development"'
+    new webpack.DefinePlugin commands: JSON.stringify(commands)
   ]
 
   devServer:
