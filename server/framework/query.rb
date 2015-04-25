@@ -1,8 +1,7 @@
 class Query < Job
   def run(sql)
-    java_import com.orientechnologies.orient.core.sql.OCommandSQL
-    sql = OCommandSQL.new sql
-
-    store.command
+    result = DB.run sql
+    puts result.to_a
+    result.to_a
   end
 end

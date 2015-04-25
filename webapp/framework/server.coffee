@@ -15,7 +15,7 @@ xhr_promise = ({method, url, payload}) ->
 
 API_URL = 'http://localhost:8080/api'
 
-query = (name, sql)->
+query = (sql)->
   xhr_promise
     name: 'GET'
     url:  "#{API_URL}?params=#{sql.escapeURL(true)}"

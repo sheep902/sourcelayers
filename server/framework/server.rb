@@ -1,12 +1,15 @@
 class Server < Angelo::Base
   post '/api/:command' do |c| # POST /api/command/ body: params
-    Command = App.all(:commands).fetch(params[:command])
-    Command.new.exec(params.except :command)
+    content_type :json
+
+    Command = App.all(:commands)[params[:command]]
+    Command.new.exec params.except(:command)
   end
 
   get '/api' do |c| # GET /api?query=SELECT * FROM ...
-    sql = params[:query]
-    Query.new.exec(sql)
+    content_type :json
+
+    Query.new.exec params[:query]
     # TODO eventsource
   end
 end

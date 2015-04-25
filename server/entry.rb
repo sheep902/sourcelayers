@@ -11,3 +11,6 @@ require 'celluloid/autostart'
 ActiveSupport::Dependencies.autoload_paths += Dir.glob 'server/*/'
 
 Dir['server/init/*.rb'].each {|file| require file }
+
+s = Server.run
+at_exit do s.terminate end

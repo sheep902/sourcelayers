@@ -7,7 +7,7 @@ MIT
 ```
 npm install
 npm install webpack-dev-server -g
-webpack-dev-server --hot
+webpack-dev-server
 
 bundle install
 bundle console

@@ -29,9 +29,8 @@ module DB
 
       sql = ''
 
+      # class & props
       models.map { |class_name, values|
-        # create class
-
         sql << "create class #{class_name}\n"
 
         props = values.except :links
@@ -41,6 +40,7 @@ module DB
         }
       }
 
+      # links
       models.map{ |class_name, values|
         links = values[:links]
 
@@ -58,7 +58,7 @@ module DB
       models.each{ |model, indices|
         indices.each{ |index|
           props, type = index.values_at :props, :type
-          sql << "create index #{model}.#{props.gsub ' ', '_'} on #{model} (#{props.gsub ' ', ','}) #{type}\n";
+          sql << "create index #{model}.#{props.gsub ' ', '_'} on #{model} (#{props.gsub ' ', ','}) #{type}\n"
         }
       }
 
