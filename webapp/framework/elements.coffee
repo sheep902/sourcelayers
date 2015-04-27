@@ -9,7 +9,7 @@ require.context('../elements', yes, /\.coffee$/).keys().map (name)-> name[2..-8]
     lazy_factory = (name)->
       component = require "elements/#{name}"
       React.createFactory component
-    elements[name] = (params...)-> lazy_factory(name) params
+    elements[name] = (params...)-> lazy_factory(name).apply this, params
 
 React.DOM.keys()
   .forEach (name)->

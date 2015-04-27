@@ -18,4 +18,7 @@ framework =
 
   event: (func)-> func
 
+  process: ({transform})->
+
+
 module.exports = framework

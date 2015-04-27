@@ -1,15 +1,23 @@
 {element} = require 'framework/framework'
 
-{div, p} = require 'framework/elements'
+{div, p, search_button, tree} = require 'framework/elements'
 {do_something} = require 'framework/intents'
 
 module.exports = element
-  handle_click: ->
-    do_something 'something'
+  search: ->
+    do_something()
 
   render: ->
-    div onClick: @handle_click, className: 'root',
-      p {},
-        'hello world'
-      p {},
-        'hello react'
+    div className: 'root',
+      div className: 'navigation',
+        div className: 'titlebar', 'title'
+        tree {}, ''
+
+      div className: 'main',
+        'react'
+
+      div className: 'histories',
+        'world'
+
+      search_button onClick: @search
+
